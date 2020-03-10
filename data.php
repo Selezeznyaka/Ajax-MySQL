@@ -18,7 +18,9 @@ try {
 			array(
 				"id" => $rows["id"],
 				"name" => $rows["name"],
-				"position" => $rows["position"]
+				"position" => $rows["position"],
+				"url" => $rows["url"],
+				"description" => $rows["description"]
 			)
 		);
         //print_r($rows);

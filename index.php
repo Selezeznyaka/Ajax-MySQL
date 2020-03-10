@@ -354,39 +354,18 @@
                     laudantium modi necessitatibus neque nisi omnis perspiciatis
                     tenetur vero, voluptatum.
                 </p>
-            </article>
-            <article class="our-team__team-cards team-cards">
-                <div class="team-cards__photo-wrap">
-                    <div class="team-cards__photo team-cards__photo--1"></div>
-                    <div class="team-cards__description description description--team-cards description--team-cards--active"></div>
-
-                </div>
-                <div class="team-cards__photo-wrap">
-                    <div class="team-cards__photo team-cards__photo--2"></div>
-                    <div class="team-cards__description description description--team-cards"></div>
-
-                </div>
-                <div class="team-cards__photo-wrap">
-                    <div class="team-cards__photo team-cards__photo--3"></div>
-                    <div class="team-cards__description description description--team-cards"></div>
-
-                </div>
-                <div class="team-cards__photo-wrap">
-                    <div class="team-cards__photo team-cards__photo--4"></div>
-                    <div class="team-cards__description description description--team-cards"></div>
-
-                </div>
-                
-            </article>
-            <div style="" class="data">
+            <div style="text-align:center;" class="data">
 		
             </div>
-            <button onClick="getData()">Get Info About Our Team</button>
+			<div style="display:flex; margin-left: auto;margin-right: auto;">
+				<div id="button1"> <button class="getinfo" onClick="getData()">Get Data</button> </div>
+			</div>
+			
             <script>
-		
                 function getData(){
                     console.clear();
                     $(".data").empty();
+					$("#button1").empty();
                     $(".data").html("Loading...");
                     
                     $.ajax(
@@ -400,13 +379,12 @@
                             $(".data").empty();
                             data = jQuery.parseJSON(data)
 
-                            console.log(data)
-                            alert("Attention! Are you sure you want to download the data?")
-
                             for(i = 0; i < data.length; i++){
-                                var html = '<div class="workers" id="con1" onClick="f1(this.id)"><p class="wName" >'+data[i]["name"]+'</p><p class="wPost" >'+data[i]["position"]+'</p><br></div>'
+                                var html = '<div class="workers" id="con1" onClick="f1(this.id)"><div  hidden >'+data[i]["description"]+'</div><p class="wName" >'+data[i]["name"]+'</p><p class="wPost" >'+data[i]["position"]+'</p><img " style="height: 130px;" src="'+data[i]["url"]+'" ><br></div>'
                                 $(".data").append(html);
                             }
+							var remove = '<div id="button2"> <button class="getinfo" onClick="removeData()">Remove</button> </div>'
+								$(".data").append(remove);
                         },
                         error: function (jqXhr, textStatus, errorMessage) {
                             $('p').append('Error' + errorMessage);
@@ -414,16 +392,57 @@
                     });
                 }
             </script>
+			<script>
+				function removeData(){
+					console.clear();
+                    $(".data").empty();
+					$("#button2").empty();
+					var get = '<div id="button1"> <button class="getinfo" onClick="getData()">Get Data</button> </div>'
+					$(".data").append(get);
+				}
+			</script>
+			<script>
+			</script>
             <style>
                 .workers{
-                    width: 270px;
+					margin:2.5px;
+                    width: 200px;
+					height: 163px;
                     display: inline-block;
                     text-align: center;
+					border: 2px solid black;
+					border-radius: 35px;
+					color:black;
                 }
+				
+				.getinfo {
+					text-decoration: none;
+					outline: none;
+					display: inline-block;
+					width: 140px;
+					height: 45px;
+					line-height: 45px;
+					border-radius: 45px;
+					margin: 10px 20px;
+					font-family: 'Montserrat', sans-serif;
+					font-size: 11px;
+					text-transform: uppercase;
+					text-align: center;
+					letter-spacing: 3px;
+					font-weight: 600;
+					color: #524f4e;
+					background: white;
+					box-shadow: 0 8px 15px rgba(0,0,0,.1);
+					transition: .3s;
+				}
+				.getinfo:hover {
+					background: #2EE59D;
+					box-shadow: 0 15px 20px rgba(46,229,157,.4);
+					color: white;
+					transform: translateY(-7px);
+				}
             </style>
-
-
-
+			
             <div class="social-networks social-networks--our-team">
                 <span class="social-networks__item">
                     <a href="#!" class="social-networks__item-href" title="facebook">
